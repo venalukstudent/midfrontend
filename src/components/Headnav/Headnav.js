@@ -1,4 +1,38 @@
+import React, { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ScrollSpy from "bootstrap/js/dist/scrollspy";
+
 const Headnav = () => {
+  useEffect(() => {
+    // Fungsi untuk mengecilkan navbar saat scroll
+    const navbarShrink = () => {
+      const mainNav = document.body.querySelector("#mainNav");
+      if (!mainNav) return;
+      if (window.scrollY === 0) {
+        mainNav.classList.remove("navbar-shrink");
+      } else {
+        mainNav.classList.add("navbar-shrink");
+      }
+    };
+
+    // Tambahkan event listener untuk scroll
+    window.addEventListener("scroll", navbarShrink);
+
+    // Aktifkan Bootstrap ScrollSpy
+    const mainNav = document.body.querySelector("#mainNav");
+    if (mainNav) {
+      new ScrollSpy(document.body, {
+        target: "#mainNav",
+        rootMargin: "0px 0px -40%",
+      });
+    }
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("scroll", navbarShrink);
+    };
+  }, []); // Empty dependency array karena hanya perlu dijalankan sekali
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"

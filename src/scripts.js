@@ -1,5 +1,11 @@
 import "bootstrap"; // Pastikan ini ada di bagian atas
 import "bootstrap/dist/css/bootstrap.min.css";
+
+if (typeof bootstrap !== "undefined") {
+  new bootstrap.ScrollSpy(document.body, {
+    target: "#mainNav",
+  });
+}
 /*!
  * Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
  * Copyright 2013-2023 Start Bootstrap
