@@ -3865,6 +3865,10 @@ fieldset:disabled .btn {
   display: block;
 }
 
+#mainNav {
+  background-color: #10715e !important; /* gunakan !important untuk override bootstrap */
+}
+
 .navbar {
   --bs-navbar-padding-x: 0;
   --bs-navbar-padding-y: 0.5rem;
