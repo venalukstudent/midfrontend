@@ -1,4 +1,21 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 const MasterHead = () => {
+
+  const [Head, setHead] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const HeadRef = ref(db, "Head");
+
+    setLoading(true);
+    onValue(HeadRef, (snapshot) => {
+      const data = snapshot.val();
+      setHead(data);
+      setLoading(false);
+    });
+  }, []);
   return (
     <nav>
       <header className="masthead bg-primary text-white text-center">
@@ -9,7 +26,7 @@ const MasterHead = () => {
             alt="..."
           />
           <h1 className="masthead-heading text-uppercase mb-0">
-            Venalveol Manampiring
+            {Head.title}
           </h1>
           <div className="divider-custom divider-light">
             <div className="divider-custom-line" />

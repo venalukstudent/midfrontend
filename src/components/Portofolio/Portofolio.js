@@ -1,4 +1,22 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 const Portofolio = () => {
+
+
+  const [Porto, setPorto] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const PortoRef = ref(db, "Porto");
+
+    setLoading(true);
+    onValue(PortoRef, (snapshot) => {
+      const data = snapshot.val();
+      setPorto(data);
+      setLoading(false);
+    });
+  }, []);
   return (
     <div>
       <section className="page-section portfolio" id="portfolio">
@@ -27,7 +45,7 @@ const Portofolio = () => {
                 </div>
                 <img
                   className="img-fluid"
-                  src="/img/portfolio/1.jpg"
+                  src={`data:image/jpg;base64, ${Porto.img1}`}
                   alt="..."
                 />
               </div>
@@ -45,7 +63,7 @@ const Portofolio = () => {
                 </div>
                 <img
                   className="img-fluid"
-                  src="/img/portfolio/2.jpg"
+                  src={`data:image/jpg;base64, ${Porto.img2}`}
                   alt="..."
                 />
               </div>
@@ -63,7 +81,7 @@ const Portofolio = () => {
                 </div>
                 <img
                   className="img-fluid"
-                  src="/img/portfolio/3.jpg"
+                  src={`data:image/jpg;base64, ${Porto.img3}`}
                   alt="..."
                 />
               </div>

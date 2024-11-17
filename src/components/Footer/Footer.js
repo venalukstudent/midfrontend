@@ -1,6 +1,23 @@
 import { FaInstagram, FaGithub } from "react-icons/fa";
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
+
 
 const Footer = () => {
+  const [Contact, setContact] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const ContactRef = ref(db, "Contact");
+
+    setLoading(true);
+    onValue(ContactRef, (snapshot) => {
+      const data = snapshot.val();
+      setContact(data);
+      setLoading(false);
+    });
+  }, []);
   return (
     <div>
       {/* Footer */}
@@ -11,8 +28,7 @@ const Footer = () => {
             <div className="col-lg-4 mb-5 mb-lg-0">
               <h4 className="text-uppercase mb-4">Location</h4>
               <p className="lead mb-0">
-                Jl. Arnold Mononutu, Airmadidi Bawah, Kec. Airmadidi, Kabupaten
-                Minahasa Utara, Sulawesi Utara 95371 Universitas Klabat, Alamat
+                {Contact.address}
               </p>
             </div>
             {/* Footer Social Icons */}
@@ -38,10 +54,10 @@ const Footer = () => {
             {/* Footer About Text */}
             <div className="col-lg-4">
               <h4 className="text-uppercase mb-4">Telephone</h4>
-              <p className="lead mb-0">+62 853-4043-3849</p>
+              <p className="lead mb-0">{Contact.telephone}</p>
               <br />
               <h4 className="text-uppercase mb-4">Email</h4>
-              <p className="lead mb-0">s22310263@student.unklab.ac.id</p>
+              <p className="lead mb-0">{Contact.email}</p>
             </div>
           </div>
         </div>

@@ -1,4 +1,21 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
+
 const About = () => {
+  const [About, setAbout] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const AboutRef = ref(db, "About");
+
+    setLoading(true);
+    onValue(AboutRef, (snapshot) => {
+      const data = snapshot.val();
+      setAbout(data);
+      setLoading(false);
+    });
+  }, []);
   return (
     <div>
       {/* About Section*/}
@@ -20,20 +37,12 @@ const About = () => {
           <div className="row">
             <div className="col-lg-4 ms-auto">
               <p className="lead">
-                My name is venal born in timika, now i'm 18 years old and
-                studying to be a programmer. i was elementary school at advent
-                kolongan elementary school, then middle school at advent 1
-                tikala manado middle school, and high school at advent klabat
-                manado high school, and now i'm studying at klabat university
-                with a major in informatics.
+                {About.p1}
               </p>
             </div>
             <div className="col-lg-4 me-auto">
               <p className="lead">
-                In this 3rd semester, I learned a lot about programming such as
-                creating applications with c#, creating webs with html, css and
-                javascript and then connecting them through react and firebase.
-                and also github which makes coding more efficient.
+                {About.p2}
               </p>
             </div>
           </div>
