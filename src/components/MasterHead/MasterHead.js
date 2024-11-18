@@ -1,7 +1,6 @@
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
 const MasterHead = () => {
-
   const [Head, setHead] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -25,9 +24,7 @@ const MasterHead = () => {
             src="/img/avataaars.svg"
             alt="..."
           />
-          <h1 className="masthead-heading text-uppercase mb-0">
-            {Head.title}
-          </h1>
+          <h1 className="masthead-heading text-uppercase mb-0">{Head.title}</h1>
           <div className="divider-custom divider-light">
             <div className="divider-custom-line" />
             <div className="divider-custom-icon">
