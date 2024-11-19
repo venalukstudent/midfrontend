@@ -1,8 +1,7 @@
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
+
 const Portofolio = () => {
-
-
   const [Porto, setPorto] = useState({});
   const [loading, setLoading] = useState(false);
 

@@ -11397,3 +11397,10 @@ html {
 .MasterHead {
   width: 100%;
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Pastikan ini sesuai dengan tinggi elemen yang diinginkan */
+}

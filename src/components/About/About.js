@@ -1,9 +1,10 @@
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
+import { Circles } from "react-loader-spinner"; // Mengimpor Circles dari react-loader-spinner
 
 const About = () => {
   const [About, setAbout] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const db = getDatabase();
@@ -33,19 +34,21 @@ const About = () => {
             </div>
             <div className="divider-custom-line" />
           </div>
-          {/* About Section Content*/}
-          <div className="row">
-            <div className="col-lg-4 ms-auto">
-              <p className="lead">
-                {About.p1}
-              </p>
+          {/* Loading Indicator */}
+          {loading ? (
+            <div className="loader-container">
+              <Circles color="#00BFFF" height={80} width={80} />
             </div>
-            <div className="col-lg-4 me-auto">
-              <p className="lead">
-                {About.p2}
-              </p>
+          ) : (
+            <div className="row">
+              <div className="col-lg-4 ms-auto">
+                <p className="lead">{About.p1}</p>
+              </div>
+              <div className="col-lg-4 me-auto">
+                <p className="lead">{About.p2}</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </div>

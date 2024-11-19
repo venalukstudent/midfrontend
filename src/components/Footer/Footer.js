@@ -2,7 +2,6 @@ import { FaInstagram, FaGithub } from "react-icons/fa";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
 
-
 const Footer = () => {
   const [Contact, setContact] = useState({});
   const [loading, setLoading] = useState(false);
@@ -27,9 +26,7 @@ const Footer = () => {
             {/* Footer Location */}
             <div className="col-lg-4 mb-5 mb-lg-0">
               <h4 className="text-uppercase mb-4">Location</h4>
-              <p className="lead mb-0">
-                {Contact.address}
-              </p>
+              <p className="lead mb-0">{Contact.address}</p>
             </div>
             {/* Footer Social Icons */}
             <div className="col-lg-4 mb-5 mb-lg-0">
@@ -65,7 +62,7 @@ const Footer = () => {
       {/* Copyright Section */}
       <div className="copyright py-4 text-center text-white">
         <div className="container">
-          <small>Copyright © Your Website 2023</small>
+          <small>Copyright © Your Website 2024</small>
         </div>
       </div>
     </div>
