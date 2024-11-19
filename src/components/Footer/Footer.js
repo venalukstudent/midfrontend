@@ -1,10 +1,11 @@
 import { FaInstagram, FaGithub } from "react-icons/fa";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useEffect, useState } from "react";
+import { Circles } from "react-loader-spinner"; // Mengimpor Circles dari react-loader-spinner
 
 const Footer = () => {
   const [Contact, setContact] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Set loading ke true saat awal
 
   useEffect(() => {
     const db = getDatabase();
@@ -17,6 +18,7 @@ const Footer = () => {
       setLoading(false);
     });
   }, []);
+
   return (
     <div>
       {/* Footer */}
@@ -26,7 +28,13 @@ const Footer = () => {
             {/* Footer Location */}
             <div className="col-lg-4 mb-5 mb-lg-0">
               <h4 className="text-uppercase mb-4">Location</h4>
-              <p className="lead mb-0">{Contact.address}</p>
+              <p className="lead mb-0">
+                {loading ? (
+                  <Circles color="#00BFFF" height={40} width={40} /> // Menampilkan loader saat loading
+                ) : (
+                  Contact.address
+                )}
+              </p>
             </div>
             {/* Footer Social Icons */}
             <div className="col-lg-4 mb-5 mb-lg-0">
@@ -51,10 +59,22 @@ const Footer = () => {
             {/* Footer About Text */}
             <div className="col-lg-4">
               <h4 className="text-uppercase mb-4">Telephone</h4>
-              <p className="lead mb-0">{Contact.telephone}</p>
+              <p className="lead mb-0">
+                {loading ? (
+                  <Circles color="#00BFFF" height={40} width={40} /> // Menampilkan loader saat loading
+                ) : (
+                  Contact.telephone
+                )}
+              </p>
               <br />
               <h4 className="text-uppercase mb-4">Email</h4>
-              <p className="lead mb-0">{Contact.email}</p>
+              <p className="lead mb-0">
+                {loading ? (
+                  <Circles color="#00BFFF" height={40} width={40} /> // Menampilkan loader saat loading
+                ) : (
+                  Contact.email
+                )}
+              </p>
             </div>
           </div>
         </div>
