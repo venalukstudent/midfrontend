@@ -11404,3 +11404,21 @@ html {
   align-items: center;
   height: 100%; /* Pastikan ini sesuai dengan tinggi elemen yang diinginkan */
 }
+
+.btn {
+  text-decoration: none;
+  color: #555;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(0.9);
+}
+
+a[title="GitHub"]:hover {
+  color: #00ff00; /* warna saat hover */
+}
+
+a[title="Instagram"]:hover {
+  color: palevioletred; /* warna saat hover */
+}
